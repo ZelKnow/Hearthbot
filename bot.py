@@ -1,33 +1,25 @@
-#!/usr/bin/env python3
-# -*- coding: utf-8 -*-
+#!/usr/bin/env python
+# -*- encoding: utf-8 -*-
+"""
+@File          : bot.py
+@Description   : Entry File of the Bot
+@Date          : 2021/08/06 15:45:54
+@Author        : ZelKnow
+@Github        : https://github.com/ZelKnow
+"""
+__author__ = "ZelKnow"
 
 import nonebot
 from nonebot.adapters.cqhttp import Bot as CQHTTPBot
 
-# Custom your logger
-# 
-# from nonebot.log import logger, default_format
-# logger.add("error.log",
-#            rotation="00:00",
-#            diagnose=False,
-#            level="ERROR",
-#            format=default_format)
-
-# You can pass some keyword args config to init function
 nonebot.init()
 app = nonebot.get_asgi()
 
 driver = nonebot.get_driver()
 driver.register_adapter("cqhttp", CQHTTPBot)
 
-nonebot.load_from_toml("pyproject.toml")
-
-# Modify some config / config depends on loaded configs
-# 
-# config = driver.config
-# do something...
-
+config = driver.config
+nonebot.load_all_plugins(set(config.plugins), set(config.plugin_dirs))
 
 if __name__ == "__main__":
-    nonebot.logger.warning("Always use `nb run` to start the bot instead of manually running!")
     nonebot.run(app="__mp_main__:app")
