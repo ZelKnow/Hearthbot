@@ -14,8 +14,8 @@ nonebot-adapter-cqhttp = "^2.0.0-alpha.14"
 hearthstone = "^5.40.4"
 
 [tool.poetry.dev-dependencies]
-nonebot-test = "^0.1.0"
 autopep8 = "^1.5.7"
+nonebot-plugin-test = "^0.3.0"
 
 [nonebot.plugins]
 plugins = []
