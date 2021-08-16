@@ -13,9 +13,22 @@ from hearthstone import cardxml
 from hearthstone.cardxml import CardXML
 from hearthstone.enums import CardType, GameTag, Race, Rarity, MultiClassGroup
 from .utils import set_map, class_map, multiclass_map, type_map, rarity_map
+import operator
+
+
+def card_compare(a, b):
+    if a.collectible == b.collectible:
+        if a.card_set.is_standard == b.card_set.is_standard:
+            return a.card_set.numerator > b.card_set.numerator
+        else:
+            return a.card_set.is_standard
+    else:
+        return a.collectible
 
 
 db, _ = cardxml.load()
+db = sorted(db.values(), key=operator.attrgetter("collectible",
+            "card_set.is_standard", "card_set.numerator", "cost"), reverse=True)
 
 
 def loc_name(self, locale):
@@ -41,14 +54,12 @@ CardXML.loc_flavor = loc_flavor
 
 class CardHandler():
     def __init__(self):
-        self.db = {}
-        for key in db.keys():
-            self.db[key.lower()] = db[key]
+        self.db = db
 
     def first_handle(self, terms, max_response):
         page = 1
         cards = []
-        for card in db.values():
+        for card in self.db:
             if card.type == CardType.ENCHANTMENT:
                 continue
             card_name = card.loc_name('zhCN').lower()
