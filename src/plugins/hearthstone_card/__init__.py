@@ -33,38 +33,38 @@ max_response = global_config.max_response
 @hearthstone_card.handle()
 async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
     parts = str(event.get_message()).strip().lower().split()
-    state['terms'] = []
-    state['args'] = {'lang': 'zhCN'}
+    state["terms"] = []
+    state["args"] = {"lang": "zhCN"}
     for part in parts:
         if not handle_args(part, state["args"]):
-            state['terms'].append(part)
-    state['cards'], state['hint'] = cardhandler.first_handle(
-        state['terms'], max_response)
-    if len(state['cards']) == 1:
-        msg = hscard_msg(state['cards'][0], state['args'], state["type"])
+            state["terms"].append(part)
+    state["cards"], state["hint"] = cardhandler.first_handle(
+        state["terms"], max_response)
+    if len(state["cards"]) == 1:
+        msg = hscard_msg(state["cards"][0], state["args"], state["type"])
         await bot.send(event, msg)
-    elif len(state['cards']) == 0:
-        await hearthstone_card.finish(state['hint'])
+    elif len(state["cards"]) == 0:
+        await hearthstone_card.finish(state["hint"])
     else:
-        await hearthstone_card.pause(state['hint'])
+        await hearthstone_card.pause(state["hint"])
 
 
 @hearthstone_tags.handle()
 @hearthstone_card.handle()
 async def handle_receive(bot: Bot, event: Event, state: T_State):
     raw = str(event.get_message()).strip()
-    if re.match(r'[\\/]\s*[1-9]\d*$', raw):
+    if re.match(r"[\\/]\s*[1-9]\d*$", raw):
         num = int(raw[1:])-1
         if num > len(state["cards"]):
             await hearthstone_card.reject("输入的编号超过结果总数量，请重新输入。")
-        card = state['cards'][num]
-        msg = hscard_msg(card, state['args'], state["type"])
+        card = state["cards"][num]
+        msg = hscard_msg(card, state["args"], state["type"])
         await hearthstone_card.reject(msg)
     elif raw.isdigit():
         page = int(raw)
-        state['hint'] = cardhandler.second_handle(
-            state['cards'], page, max_response)
-        await hearthstone_card.reject(state['hint'])
+        state["hint"] = cardhandler.second_handle(
+            state["cards"], page, max_response)
+        await hearthstone_card.reject(state["hint"])
     else:
         await handle_event(bot, event)
         await hearthstone_card.finish()
@@ -74,7 +74,7 @@ def handle_args(part, args):
     if len(part) == 4:
         lang = part[0:2].lower()+part[2:4].upper()
         if lang in supported_langs:
-            args['lang'] = lang
+            args["lang"] = lang
             return True
     return False
 

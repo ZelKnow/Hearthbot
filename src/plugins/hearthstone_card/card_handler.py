@@ -63,7 +63,7 @@ class CardHandler():
         for card in self.db:
             if card.type == CardType.ENCHANTMENT:
                 continue
-            card_name = card.loc_name('zhCN').lower()
+            card_name = card.loc_name("zhCN").lower()
             if all([term in card_name for term in terms]):
                 cards.append(card)
         num_cards = len(cards)
@@ -82,7 +82,7 @@ class CardHandler():
         page = min(page_count, max(1, page))
         offset = (page-1) * page_size
         page_hint = (
-            '查询到%d个卡牌，当前页数[%d/%d]，直接输入数字进行翻页\n'
+            "查询到%d个卡牌，当前页数[%d/%d]，直接输入数字进行翻页\n"
             % (num_cards, page, page_count)
         )
         hint = page_hint + "\n".join(
@@ -97,7 +97,7 @@ class CardHandler():
             if card.multi_class_group != MultiClassGroup.INVALID else class_map[card.card_class.name]
         cost = "%d费" % card.cost
         card_type = type_map[card.type.name]
-        name = card.loc_name('zhCN')
+        name = card.loc_name("zhCN")
         card_set = set_map[card.card_set.name]
         return (
             "\\%d：%s，%s%s%s，%s，%s"
