@@ -92,10 +92,11 @@ class CardHandler():
             % (index, name, cost, card_class, card_type, collectible, card_set)
         )
 
-    def get_pic(self, card, lang):
-        return "http://art.hearthstonejson.com/v1/render/latest/%s/512x/%s.png" % (lang, card.id)
+    def get_pic(self, card, args):
+        return "http://art.hearthstonejson.com/v1/render/latest/%s/512x/%s.png" % (args["lang"], card.id)
 
-    def get_tags(self, card, lang):
+    def get_tags(self, card, args):
+        lang = args["lang"]
         name = "名称：%s" % card.loc_name(lang)
         card_id = "\nid：%s" % card.id
         health = card.durability if card.type == CardType.WEAPON else card.health
