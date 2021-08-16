@@ -9,6 +9,7 @@
 """
 __author__ = "ZelKnow"
 
+import re
 from nonebot import get_driver
 from nonebot import on_command
 from nonebot.typing import T_State
@@ -52,11 +53,11 @@ async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
 @hearthstone_card.handle()
 async def handle_receive(bot: Bot, event: Event, state: T_State):
     raw = str(event.get_message()).strip()
-    if raw.startswith('\\') or raw.startswith('/'):
-        try:
-            card = state['cards'][int(raw[1:])-1]
-        except Exception as e:
-            await hearthstone_card.reject("卡牌编号输入有误，请重新输入")
+    if re.match(r'[\\/]\s*[1-9]\d*$', raw):
+        num = int(raw[1:])-1
+        if num > len(state["cards"]):
+            await hearthstone_card.reject("输入的编号超过结果总数量，请重新输入。")
+        card = state['cards'][num]
         msg = hscard_msg(card, state['args'], state["type"])
         await hearthstone_card.reject(msg)
     elif raw.isdigit():
