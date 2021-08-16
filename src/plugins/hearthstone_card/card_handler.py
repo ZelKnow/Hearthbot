@@ -68,7 +68,7 @@ class CardHandler():
                 cards.append(card)
         num_cards = len(cards)
         if num_cards == 0:
-            hint = "Card not found"
+            hint = "找不到相应的卡牌"
         elif num_cards == 1:
             hint = ""
         else:
