@@ -14,6 +14,7 @@ from hearthstone.cardxml import CardXML
 from hearthstone.enums import CardType, GameTag, Race, Rarity, MultiClassGroup
 from .utils import set_map, class_map, multiclass_map, type_map, rarity_map
 import operator
+import math
 
 
 def card_compare(a, b):
@@ -77,7 +78,7 @@ class CardHandler():
     def second_handle(self, cards, page, max_response):
         num_cards = len(cards)
         page_size = min(max_response, num_cards)
-        page_count = int(num_cards / page_size)
+        page_count = math.ceil(num_cards / page_size)
         page = min(page_count, max(1, page))
         offset = (page-1) * page_size
         page_hint = (
