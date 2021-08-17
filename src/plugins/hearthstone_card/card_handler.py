@@ -107,6 +107,9 @@ class CardHandler():
     def get_pic(self, card, args):
         return "http://art.hearthstonejson.com/v1/render/latest/%s/512x/%s.png" % (args["lang"], card.id)
 
+    def get_ori(self, card):
+        return "https://art.hearthstonejson.com/v1/orig/%s.png" % card.id
+
     def get_tags(self, card, args):
         lang = args["lang"]
         name = "名称：%s" % card.loc_name(lang)

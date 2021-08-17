@@ -26,9 +26,12 @@ hearthstone_card = on_command("card", aliases={"c", "C", "CARD", "Card"},
                               state={"type": "card"}, priority=0)
 hearthstone_tags = on_command("tags", aliases={"t", "T", "TAGS", "Tags", "tag"},
                               state={"type": "tags"}, priority=1)
+hearthstone_ori = on_command("ori", aliases={"o", "O", "ORI", "Ori", "art"},
+                             state={"type": "ori"}, priority=2)
 max_response = global_config.max_response
 
 
+@hearthstone_ori.handle()
 @hearthstone_tags.handle()
 @hearthstone_card.handle()
 async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
@@ -49,6 +52,7 @@ async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
         await hearthstone_card.pause(state["hint"])
 
 
+@hearthstone_ori.handle()
 @hearthstone_tags.handle()
 @hearthstone_card.handle()
 async def handle_receive(bot: Bot, event: Event, state: T_State):
@@ -80,10 +84,12 @@ def handle_args(part, args):
 
 
 def hscard_msg(card, args, type):
-    print(args)
     if type == "card":
         url = cardhandler.get_pic(card, args)
         return MessageSegment.image(url)
     elif type == "tags":
         tags = cardhandler.get_tags(card, args)
         return tags
+    elif type == "ori":
+        url = cardhandler.get_ori(card)
+        return MessageSegment.image(url)
