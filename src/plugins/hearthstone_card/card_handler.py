@@ -27,11 +27,6 @@ def card_compare(a, b):
         return a.collectible
 
 
-db, _ = cardxml.load()
-db = sorted(db.values(), key=operator.attrgetter("collectible",
-            "card_set.is_standard", "card_set.numerator", "cost"), reverse=True)
-
-
 def loc_name(self, locale):
     return self.strings[GameTag.CARDNAME][locale]
 
@@ -55,12 +50,18 @@ CardXML.loc_flavor = loc_flavor
 
 class CardHandler():
     def __init__(self):
-        self.db = db
+        db, _ = cardxml.load()
+        self.cards_list = []
+        for card in db:
+            if db[card].type != CardType.ENCHANTMENT:
+                self.cards_list.append(db[card])
+        self.cards_list.sort(key=operator.attrgetter("collectible",
+                                                     "card_set.is_standard", "card_set.numerator", "cost"), reverse=True)
 
     def first_handle(self, terms, max_response):
         page = 1
         cards = []
-        for card in self.db:
+        for card in self.cards_list:
             if card.type == CardType.ENCHANTMENT:
                 continue
             card_name = card.loc_name("zhCN").lower()
