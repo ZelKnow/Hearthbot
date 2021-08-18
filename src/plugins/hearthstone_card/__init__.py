@@ -37,14 +37,15 @@ max_response = global_config.max_response
 async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
     parts = str(event.get_message()).strip().lower().split()
     state["terms"] = []
-    state["args"] = {"lang": "zhCN"}
+    state["args"] = {"lang": "zhCN", "is_bgs": False}
     for part in parts:
         if not handle_args(part, state["args"]):
             state["terms"].append(part)
     state["cards"], state["hint"] = cardhandler.first_handle(
-        state["terms"], max_response)
+        state["terms"], state["args"]["is_bgs"], max_response)
     if len(state["cards"]) == 1:
-        msg = hscard_msg(state["cards"][0], state["args"], state["type"])
+        msg = hscard_msg(state["cards"][0], state["args"],
+                         state["args"]["is_bgs"])
         await bot.send(event, msg)
     elif len(state["cards"]) == 0:
         await hearthstone_card.finish(state["hint"])
@@ -67,7 +68,7 @@ async def handle_receive(bot: Bot, event: Event, state: T_State):
     elif raw.isdigit():
         page = int(raw)
         state["hint"] = cardhandler.second_handle(
-            state["cards"], page, max_response)
+            state["cards"], page, state["args"]["is_bgs"], max_response)
         await hearthstone_card.reject(state["hint"])
     else:
         await handle_event(bot, event)
@@ -80,6 +81,9 @@ def handle_args(part, args):
         if lang in supported_langs:
             args["lang"] = lang
             return True
+    elif part.lower() in ["bg", "bgs"]:
+        args["is_bgs"] = True
+        return True
     return False
 
 
