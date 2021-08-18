@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 """
 @File          : __init__.py
-@Description   : Main plugin for Hearthstone card, including card pic, card tags and so on.
+@Description   : Main plugin for Hearthstone card, including card pic, card tags.
 @Date          : 2021/08/06 16:25:36
 @Author        : ZelKnow
 @Github        : https://github.com/ZelKnow
@@ -19,8 +19,11 @@ from .card_handler import CardHandler
 from nonebot.adapters.cqhttp.message import MessageSegment
 from .utils import supported_langs
 from nonebot.message import handle_event
-cardhandler = CardHandler()
+
 global_config = get_driver().config
+max_response = global_config.max_response
+
+cardhandler = CardHandler()
 
 hearthstone_card = on_command("card", aliases={"c", "C", "CARD", "Card"},
                               state={"type": "card"}, priority=0)
@@ -28,7 +31,6 @@ hearthstone_tags = on_command("tags", aliases={"t", "T", "TAGS", "Tags", "tag"},
                               state={"type": "tags"}, priority=1)
 hearthstone_ori = on_command("ori", aliases={"o", "O", "ORI", "Ori", "art"},
                              state={"type": "ori"}, priority=2)
-max_response = global_config.max_response
 
 
 @hearthstone_ori.handle()
