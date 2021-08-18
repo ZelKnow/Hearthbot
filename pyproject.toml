@@ -12,6 +12,7 @@ nonebot2 = "^2.0.0.a14"
 nb-cli = "^0.5.0"
 nonebot-adapter-cqhttp = "^2.0.0-alpha.14"
 hearthstone = "^5.40.4"
+Pillow = "^8.3.1"
 
 [tool.poetry.dev-dependencies]
 autopep8 = "^1.5.7"
