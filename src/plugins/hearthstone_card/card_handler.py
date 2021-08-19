@@ -12,10 +12,15 @@ __author__ = "ZelKnow"
 from hearthstone import cardxml
 from hearthstone.cardxml import CardXML
 from hearthstone.enums import CardType, GameTag, Race, Rarity, MultiClassGroup, CardSet
-from .utils import set_map, class_map, multiclass_map, type_map, rarity_map, race_map
 import operator
 import math
+import json
+import os
 
+path = os.path.dirname(__file__)
+with open(os.path.join(path, "translation.json"), encoding="utf-8") as json_file:
+    translation = json.load(json_file)
+supported_langs = translation["supported_langs"]
 
 def card_compare(a, b):
     if a.collectible == b.collectible:
@@ -110,14 +115,14 @@ class CardHandler():
 
     def stringify_card(self, card, index, is_bgs):
         collectible = "可收藏" if card.collectible else "不可收藏"
-        card_class = (multiclass_map[card.multi_class_group.name] 
+        card_class = (translation["multiclass"][card.multi_class_group.name] 
                      if card.multi_class_group != MultiClassGroup.INVALID 
-                     else class_map[card.card_class.name])
+                     else translation["class"][card.card_class.name])
         cost = "%d星" % card.tags[GameTag.TECH_LEVEL] if is_bgs else "%d费" % card.cost
-        card_type = type_map[card.type.name]
+        card_type = translation["type"][card.type.name]
         name = card.loc_name("zhCN")
         gold = "（金）" if is_bgs and 1429 not in card.tags else ""
-        card_set = set_map[card.card_set.name]
+        card_set = translation["set"][card.card_set.name]
         return (
             "\\%d：%s%s，%s%s%s，%s，%s"
             % (index, name, gold, cost, card_class, card_type, 
@@ -149,17 +154,17 @@ class CardHandler():
                if args["is_bgs"] else "\n费用：%d费" % card.cost)
         stats = ("\n身材：%s/%s" % (card.atk,
                 health) if card.atk + health > 0 else "")
-        race = ("\n种族：%s" % race_map[card.race.name] 
+        race = ("\n种族：%s" % translation["race"][card.race.name] 
                if card.race != Race.INVALID else "")
-        rarity = ("\n稀有度：%s" % rarity_map[card.rarity.name] 
+        rarity = ("\n稀有度：%s" % translation["rarity"][card.rarity.name] 
                  if card.rarity != Rarity.INVALID else "")
         text = "\n" + card.loc_text(lang) if len(card.description) else ""
         flavor = ("\n卡牌趣文：" + 
                  card.loc_flavor(lang) if len(card.flavortext) else "")
-        card_class = ("\n职业：%s" % (multiclass_map[card.multi_class_group.name]
+        card_class = ("\n职业：%s" % (translation["multiclass"][card.multi_class_group.name]
                      if card.multi_class_group != MultiClassGroup.INVALID 
-                     else class_map[card.card_class.name]))
-        card_set = "\n扩展包：%s" % set_map[card.card_set.name]
+                     else translation["class"][card.card_class.name]))
+        card_set = "\n扩展包：%s" % translation["set"][card.card_set.name]
         collectible = "\n可否收藏：%s" % ("是" if card.collectible else "否")
         tags = (name + card_id + text + flavor + card_class +
                race + card_set + cost + stats + rarity + collectible)

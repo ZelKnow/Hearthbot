@@ -15,9 +15,8 @@ from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.rule import to_me
 from nonebot.adapters import Bot, Event
-from .card_handler import CardHandler
+from .card_handler import CardHandler, supported_langs
 from nonebot.adapters.cqhttp.message import MessageSegment
-from .utils import supported_langs
 from nonebot.message import handle_event
 
 global_config = get_driver().config
@@ -92,10 +91,10 @@ def handle_args(part, args):
 def hscard_msg(card, args, type):
     if type == "card":
         url = cardhandler.get_pic(card, args)
-        return MessageSegment.image(url)
+        return MessageSegment.image(url, proxy=False)
     elif type == "tags":
         tags = cardhandler.get_tags(card, args)
         return tags
     elif type == "ori":
         url = cardhandler.get_ori(card)
-        return MessageSegment.image(url)
+        return MessageSegment.image(url, proxy=False)
