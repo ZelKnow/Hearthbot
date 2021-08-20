@@ -1,0 +1,3 @@
+[submodule "src/plugins/hearthstone_deck/hs-card-tiles"]
+	path = src/plugins/hearthstone_deck/hs-card-tiles
+	url = https://github.com/HearthSim/hs-card-tiles.git
