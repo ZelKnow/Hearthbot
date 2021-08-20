@@ -1,0 +1,34 @@
+{
+    "zhCN": {
+        "font_sizes": [
+            16,
+            18,
+            19,
+            21
+        ],
+        "bounds": [
+            9,
+            8,
+            7,
+            0
+        ],
+        "deck_font": "fangzhenglibian.ttf",
+        "name_font": "fangzhenglibian.ttf",
+        "base": 20
+    },
+    "enUS": {
+        "font_sizes": [
+            12,
+            13,
+            14
+        ],
+        "bounds": [
+            22,
+            20,
+            0
+        ],
+        "deck_font": "Belwe-Bold.ttf",
+        "name_font": "fangzhenglibian.ttf",
+        "base": 21
+    }
+}
