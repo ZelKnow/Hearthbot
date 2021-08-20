@@ -24,6 +24,32 @@ test = ["coverage[toml] (>=4.5)", "hypothesis (>=4.0)", "pytest (>=6.0)", "pytes
 trio = ["trio (>=0.16)"]
 
 [[package]]
+name = "apscheduler"
+version = "3.7.0"
+description = "In-process task scheduler with Cron-like capabilities"
+category = "main"
+optional = false
+python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*, !=3.4.*, <4"
+
+[package.dependencies]
+pytz = "*"
+six = ">=1.4.0"
+tzlocal = ">=2.0,<3.0"
+
+[package.extras]
+asyncio = ["trollius"]
+doc = ["sphinx", "sphinx-rtd-theme"]
+gevent = ["gevent"]
+mongodb = ["pymongo (>=3.0)"]
+redis = ["redis (>=3.0)"]
+rethinkdb = ["rethinkdb (>=2.4.0)"]
+sqlalchemy = ["sqlalchemy (>=0.8)"]
+testing = ["pytest (<6)", "pytest-cov", "pytest-tornado5", "mock", "pytest-asyncio (<0.6)", "pytest-asyncio"]
+tornado = ["tornado (>=4.3)"]
+twisted = ["twisted"]
+zookeeper = ["kazoo"]
+
+[[package]]
 name = "arrow"
 version = "1.1.1"
 description = "Better dates & times for Python"
@@ -343,6 +369,18 @@ httpx = ">=0.18.0,<0.19.0"
 nonebot2 = ">=2.0.0-alpha.14,<3.0.0"
 
 [[package]]
+name = "nonebot-plugin-apscheduler"
+version = "0.1.2"
+description = "APScheduler Support for NoneBot2"
+category = "main"
+optional = false
+python-versions = ">=3.7,<4.0"
+
+[package.dependencies]
+apscheduler = ">=3.7.0,<4.0.0"
+nonebot2 = ">=2.0.0-alpha.8,<3.0.0"
+
+[[package]]
 name = "nonebot-plugin-test"
 version = "0.3.0"
 description = "Test frontend for nonebot v2+"
@@ -513,6 +551,14 @@ asyncio_client = ["aiohttp (>=3.4)", "websockets (>=7.0)"]
 client = ["requests (>=2.21.0)", "websocket-client (>=0.54.0)"]
 
 [[package]]
+name = "pytz"
+version = "2021.1"
+description = "World timezone definitions, modern and historical"
+category = "main"
+optional = false
+python-versions = "*"
+
+[[package]]
 name = "pyyaml"
 version = "5.4.1"
 description = "YAML parser and emitter for Python"
@@ -612,6 +658,17 @@ optional = false
 python-versions = "*"
 
 [[package]]
+name = "tzlocal"
+version = "2.1"
+description = "tzinfo object for the local timezone"
+category = "main"
+optional = false
+python-versions = "*"
+
+[package.dependencies]
+pytz = "*"
+
+[[package]]
 name = "urllib3"
 version = "1.26.6"
 description = "HTTP library with thread-safe connection pooling, file post, and more."
@@ -698,7 +755,7 @@ dev = ["pytest (>=4.6.2)", "black (>=19.3b0)"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "5f2c895fe0df8ba89eeddd1055196138e80f93460c7686da5a201d4d03bab304"
+content-hash = "e4d2a56bab7ac299076a9ba496bb366181bd6cd9cb22700ee15cc6184d4d5d19"
 
 [metadata.files]
 aiofiles = [
@@ -708,6 +765,10 @@ aiofiles = [
 anyio = [
     {file = "anyio-3.3.0-py3-none-any.whl", hash = "sha256:929a6852074397afe1d989002aa96d457e3e1e5441357c60d03e7eea0e65e1b0"},
     {file = "anyio-3.3.0.tar.gz", hash = "sha256:ae57a67583e5ff8b4af47666ff5651c3732d45fd26c929253748e796af860374"},
+]
+apscheduler = [
+    {file = "APScheduler-3.7.0-py2.py3-none-any.whl", hash = "sha256:c06cc796d5bb9eb3c4f77727f6223476eb67749e7eea074d1587550702a7fbe3"},
+    {file = "APScheduler-3.7.0.tar.gz", hash = "sha256:1cab7f2521e107d07127b042155b632b7a1cd5e02c34be5a28ff62f77c900c6a"},
 ]
 arrow = [
     {file = "arrow-1.1.1-py3-none-any.whl", hash = "sha256:77a60a4db5766d900a2085ce9074c5c7b8e2c99afeaa98ad627637ff6f292510"},
@@ -862,6 +923,10 @@ nonebot-adapter-cqhttp = [
     {file = "nonebot-adapter-cqhttp-2.0.0a15.tar.gz", hash = "sha256:cfb3dd4678d5e9f924baeb29220b95d5b651a51668e3ded1fd39df11b3531fde"},
     {file = "nonebot_adapter_cqhttp-2.0.0a15-py3-none-any.whl", hash = "sha256:9e5802f5c1bfb1e80ae56a80d3ee0dda2ca06ca90ba2bb2673590c91addc5aaa"},
 ]
+nonebot-plugin-apscheduler = [
+    {file = "nonebot-plugin-apscheduler-0.1.2.tar.gz", hash = "sha256:1765336cd388dde15f723ed12dbca942b04e4c25d5d7786878e447b09e68b909"},
+    {file = "nonebot_plugin_apscheduler-0.1.2-py3-none-any.whl", hash = "sha256:eed7b9e60d08826ae4919f82dc240fc7ec469185271c2271e14438a3e0ca7692"},
+]
 nonebot-plugin-test = [
     {file = "nonebot-plugin-test-0.3.0.tar.gz", hash = "sha256:6cea9342f4df69a73b9aa27a3eaa22a08c6e54b675e2e6638b4b3fc8568cd6fe"},
     {file = "nonebot_plugin_test-0.3.0-py3-none-any.whl", hash = "sha256:edb880340436323ccd0a13b31d48975136b6bdc71daa178601c4b05b068cc73e"},
@@ -974,6 +1039,10 @@ python-socketio = [
     {file = "python-socketio-4.6.1.tar.gz", hash = "sha256:cd1f5aa492c1eb2be77838e837a495f117e17f686029ebc03d62c09e33f4fa10"},
     {file = "python_socketio-4.6.1-py2.py3-none-any.whl", hash = "sha256:5a21da53fdbdc6bb6c8071f40e13d100e0b279ad997681c2492478e06f370523"},
 ]
+pytz = [
+    {file = "pytz-2021.1-py2.py3-none-any.whl", hash = "sha256:eb10ce3e7736052ed3623d49975ce333bcd712c7bb19a58b9e2089d4057d0798"},
+    {file = "pytz-2021.1.tar.gz", hash = "sha256:83a4a90894bf38e243cf052c8b58f381bfe9a7a483f6a9cab140bc7f702ac4da"},
+]
 pyyaml = [
     {file = "PyYAML-5.4.1-cp27-cp27m-macosx_10_9_x86_64.whl", hash = "sha256:3b2b1824fe7112845700f815ff6a489360226a5609b96ec2190a45e62a9fc922"},
     {file = "PyYAML-5.4.1-cp27-cp27m-win32.whl", hash = "sha256:129def1b7c1bf22faffd67b8f3724645203b79d8f4cc81f674654d9902cb4393"},
@@ -1041,6 +1110,10 @@ typing-extensions = [
     {file = "typing_extensions-3.10.0.0-py2-none-any.whl", hash = "sha256:0ac0f89795dd19de6b97debb0c6af1c70987fd80a2d62d1958f7e56fcc31b497"},
     {file = "typing_extensions-3.10.0.0-py3-none-any.whl", hash = "sha256:779383f6086d90c99ae41cf0ff39aac8a7937a9283ce0a414e5dd782f4c94a84"},
     {file = "typing_extensions-3.10.0.0.tar.gz", hash = "sha256:50b6f157849174217d0656f99dc82fe932884fb250826c18350e159ec6cdf342"},
+]
+tzlocal = [
+    {file = "tzlocal-2.1-py2.py3-none-any.whl", hash = "sha256:e2cb6c6b5b604af38597403e9852872d7f534962ae2954c7f35efcb1ccacf4a4"},
+    {file = "tzlocal-2.1.tar.gz", hash = "sha256:643c97c5294aedc737780a49d9df30889321cbe1204eac2c2ec6134035a92e44"},
 ]
 urllib3 = [
     {file = "urllib3-1.26.6-py2.py3-none-any.whl", hash = "sha256:39fb8672126159acb139a7718dd10806104dec1e2f0f6c88aab05d17df10c8d4"},
