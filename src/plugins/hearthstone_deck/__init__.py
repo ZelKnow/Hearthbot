@@ -23,7 +23,8 @@ import traceback
 
 deck_handler = DeckHandler()
 
-hearthstone_deck = on_command("deck", aliases={"d", "D", "DECK", "Deck"},
+hearthstone_deck = on_command("deck",
+                              aliases={"d", "D", "DECK", "Deck"},
                               priority=0)
 deck_keyword = on_keyword("AAE", priority=3)
 
@@ -56,11 +57,11 @@ async def handle_receive(bot: Bot, event: Event, state: T_State):
 
 @deck_keyword.handle()
 async def handle_receive(bot: Bot, event: Event, state: T_State):
-    m = re.search(
-        r"AAE[+-0123456789=A-Z/a-z ]{50,140}", str(event.get_message()))
+    m = re.search(r"AAE[+-0123456789=A-Z/a-z ]{50,140}",
+                  str(event.get_message()))
     if m:
         deck = m.group(0)
-        try: 
+        try:
             img = deck_handler.deck_to_image(deck, "")
         except Exception as e:
             logger.error(traceback.format_exc())
@@ -88,4 +89,4 @@ def get_img_msg(img):
     img.save(output_buffer, format='JPEG')
     byte_data = output_buffer.getvalue()
     base64_str = base64.b64encode(byte_data)
-    return MessageSegment.image("base64://"+str(base64_str)[2:-1])
+    return MessageSegment.image("base64://" + str(base64_str)[2:-1])

@@ -10,7 +10,6 @@
 """
 __author__ = "ZelKnow"
 
-
 from hearthstone.deckstrings import FormatType
 import httpx
 from .rules import FALSE_POSITIVE_RULES
@@ -39,12 +38,13 @@ def init_clusters(cluster_data):
         hero = raw_cluster["player_class"].upper()
         cluster = {}
         for deck_id in raw_cluster["signatures"]:
-            if(raw_cluster["cluster_map"][deck_id] == None):
+            if (raw_cluster["cluster_map"][deck_id] == None):
                 continue
             temp = {}
             temp["signature_weights"] = dict(
                 raw_cluster["signatures"][deck_id])
-            temp["required_cards"] = raw_cluster["cluster_required_cards"][deck_id]
+            temp["required_cards"] = raw_cluster["cluster_required_cards"][
+                deck_id]
             cluster[deck_id] = temp
         cluster_map[hero] = raw_cluster["cluster_map"]
         clusters[hero] = cluster
@@ -153,9 +153,7 @@ def calculate_archetype_normalizers(clusters):
             largest_signature_id = archetype_id
 
     cutoff_threshold = largest_signature_max_score * .25
-    result = {
-        largest_signature_id: 1.0
-    }
+    result = {largest_signature_id: 1.0}
     for archetype_id, cluster in clusters.items():
         signature = cluster["signature_weights"]
         if archetype_id != largest_signature_id:

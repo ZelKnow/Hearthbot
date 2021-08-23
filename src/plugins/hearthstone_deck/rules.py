@@ -9,11 +9,9 @@
 """
 __author__ = "HearthSim"
 
-
 from hearthstone.enums import CardType, GameTag
 
 from .utils import card_db
-
 
 db = card_db()
 
@@ -57,10 +55,9 @@ def is_odd_only_deck(data_point):
 def is_no_minion_deck(data_point):
     for dbf_id in data_point["cards"]:
         card = db[int(dbf_id)]
-        if (
-                card.type != CardType.SPELL and
+        if (card.type != CardType.SPELL and
                 dbf_id != 61503  # C'Thun, The Shattered is not a real minion
-        ):
+            ):
             return False
     return True
 

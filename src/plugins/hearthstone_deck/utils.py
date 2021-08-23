@@ -9,7 +9,6 @@
 """
 __author__ = "ZelKnow"
 
-
 from hearthstone.cardxml import load_dbf
 
 _CARD_DATA_CACHE = {}

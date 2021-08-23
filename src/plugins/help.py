@@ -22,7 +22,7 @@ help = on_command("help", aliases={"帮助", "h", "HELP", "Help"}, priority=3)
 
 @help.handle()
 async def send_help_msg(bot: Bot, event: Event, state: T_State):
-    msg ="""使用帮助：
+    msg = """使用帮助：
     本机器人可查询炉石卡牌、生成卡组图片。
     1）使用命令 “!card 卡牌名称” 即可查询卡牌图片。使用命令 “!tags 卡牌名称” 即可查询卡牌文字信息。使用命令 “!ori 卡牌名称” 查询卡牌原画。
     1.1)可进行多关键字查询，如“!card 雷诺 神奇”
