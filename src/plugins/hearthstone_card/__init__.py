@@ -91,10 +91,10 @@ def handle_args(part, args):
 def hscard_msg(card, args, type):
     if type == "card":
         url = cardhandler.get_pic(card, args)
-        return MessageSegment.image(url, proxy=False, timeout=10)
+        return MessageSegment.image(url, timeout=10)
     elif type == "tags":
         tags = cardhandler.get_tags(card, args)
         return tags
     elif type == "ori":
         url = cardhandler.get_ori(card)
-        return MessageSegment.image(url, proxy=False, timeout=10)
+        return MessageSegment.image(url, timeout=10)
