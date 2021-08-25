@@ -52,7 +52,7 @@ async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
         state["terms"], state["args"]["is_bgs"], max_response)
     if len(state["cards"]) == 1:
         msg = hscard_msg(state["cards"][0], state["args"],
-                         state["args"]["is_bgs"])
+                         state["type"])
         await bot.send(event, msg)
     elif len(state["cards"]) == 0:
         await hearthstone_card.finish(state["hint"])
