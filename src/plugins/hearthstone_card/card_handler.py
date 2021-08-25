@@ -16,6 +16,7 @@ import operator
 import math
 import json
 import os
+import re
 
 path = os.path.dirname(__file__)
 with open(os.path.join(path, "translation.json"),
@@ -89,8 +90,7 @@ class CardHandler():
         cards = []
         search_list = self.bgs_list if is_bgs else self.cards_list
         for card in search_list:
-            card_name = card.loc_name("zhCN").lower()
-            if all([term in card_name for term in terms]):
+            if all([self.search(term, card, is_bgs) for term in terms]):
                 cards.append(card)
         num_cards = len(cards)
         if num_cards == 0:
@@ -113,7 +113,18 @@ class CardHandler():
             self.stringify_card(cards[i], i + 1, is_bgs)
             for i in range(offset, min(offset + page_size, num_cards)))
         return hint
-
+    
+    def search(self, term, card, is_bgs):
+        if re.match(r"\d+[\\/]\d+[\\/]\d+", term):
+            cost = card.tags[GameTag.TECH_LEVEL] if is_bgs else card.cost
+            attack = card.atk
+            health =  (card.durability if card.type == CardType.WEAPON else card.health)
+            if [cost, attack, health] == list(map(int, re.split(r"[\\/]", term))):
+                return True
+        elif term in card.loc_name("zhCN").lower():
+            return True
+        return False
+    
     def stringify_card(self, card, index, is_bgs):
         collectible = "可收藏" if card.collectible else "不可收藏"
         card_class = (translation["multiclass"][card.multi_class_group.name]
