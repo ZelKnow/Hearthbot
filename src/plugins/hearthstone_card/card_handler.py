@@ -22,6 +22,9 @@ path = os.path.dirname(__file__)
 with open(os.path.join(path, "translation.json"),
           encoding="utf-8") as json_file:
     translation = json.load(json_file)
+with open(os.path.join(path, "hs-alter-name", "alter.json"),
+          encoding="utf-8") as json_file:
+    alter = json.load(json_file)
 supported_langs = translation["supported_langs"]
 
 
@@ -66,6 +69,7 @@ class CardHandler():
         cards_list = []
         for card in db:
             if db[card].type != CardType.ENCHANTMENT:
+                db[card].alter = alter.get(db[card].strings[GameTag.CARDNAME]["zhCN"], [])
                 cards_list.append(db[card])
         cards_list.sort(key=operator.attrgetter("collectible",
                                                 "card_set.is_standard",
@@ -121,6 +125,8 @@ class CardHandler():
             health =  (card.durability if card.type == CardType.WEAPON else card.health)
             if [cost, attack, health] == list(map(int, re.split(r"[\\/]", term))):
                 return True
+        elif any([term in altername for altername in card.alter]):
+            return True
         elif term in card.loc_name("zhCN").lower():
             return True
         return False

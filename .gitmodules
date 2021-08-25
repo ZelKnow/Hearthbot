@@ -1,3 +1,6 @@
 [submodule "src/plugins/hearthstone_deck/hs-card-tiles"]
 	path = src/plugins/hearthstone_deck/hs-card-tiles
 	url = https://github.com/HearthSim/hs-card-tiles.git
+[submodule "src/plugins/hearthstone_card/hs-alter-name"]
+	path = src/plugins/hearthstone_card/hs-alter-name
+	url = https://github.com/ZelKnow/hs-alter-name.git
