@@ -17,6 +17,7 @@ import math
 import json
 import os
 import re
+import httpx
 
 path = os.path.dirname(__file__)
 with open(os.path.join(path, "translation.json"),
@@ -59,11 +60,27 @@ CardXML.loc_text = loc_text
 CardXML.loc_flavor = loc_flavor
 
 
+def create_access_token(client_id, client_secret, region = 'us'):
+    if(region=='cn'):
+        url = 'https://www.battlenet.com.cn/oauth/token'
+    else:
+        url = "https://%s.battle.net/oauth/token" % region
+    body = {"grant_type": 'client_credentials'}
+    try:
+        response = httpx.post(url, data=body, auth=(client_id, client_secret), timeout = 9).json()
+        return response["access_token"]
+    except:
+        return None
+
+
 class CardHandler():
-    def __init__(self):
+    def __init__(self, Blizz_ID, Blizz_Sec):
         db, _ = cardxml.load()
         self.cards_list = self._init_cards(db)
         self.bgs_list = self._init_bgs(db)
+        self.Blizz_ID = Blizz_ID
+        self.Blizz_Sec = Blizz_Sec
+        self.token = create_access_token(Blizz_ID, Blizz_Sec)
 
     def _init_cards(self, db):
         cards_list = []
@@ -160,6 +177,25 @@ class CardHandler():
             return (
                 "http://art.hearthstonejson.com/v1/render/latest/%s/512x/%s.png"
                 % (args["lang"], card.id))
+
+    async def get_pic_offi(self, card, args):
+        if not self.token:
+            return None
+        locale = args["lang"]
+        locale = locale[0:2] + "_" + locale[2:4]
+        game_mode = "battlegrounds" if args["is_bgs"] else "constructed"
+        url = "https://api.blizzard.com/hearthstone/cards/%d?locale=%s&gameMode=%s&access_token=%s" % (card.dbf_id, locale, game_mode, self.token)
+        async with httpx.AsyncClient() as client:
+            resp = await client.get(url)
+            if resp:
+                card_data = resp.json()
+                if args["is_bgs"]:
+                    if 1429 not in card.tags:
+                        return card_data["battlegrounds"]["imageGold"]
+                    else:
+                        return card_data["battlegrounds"]["image"]
+                else:
+                    return card_data["image"]
 
     def get_ori(self, card):
         return "https://art.hearthstonejson.com/v1/orig/%s.png" % card.id

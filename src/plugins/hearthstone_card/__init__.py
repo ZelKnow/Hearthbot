@@ -21,8 +21,10 @@ from nonebot.message import handle_event
 
 global_config = get_driver().config
 max_response = global_config.max_response
+Blizz_ID = global_config.blizz_id
+Blizz_Sec = global_config.blizz_sec
 
-cardhandler = CardHandler()
+cardhandler = CardHandler(Blizz_ID, Blizz_Sec)
 
 hearthstone_card = on_command("card",
                               aliases={"c", "C", "CARD", "Card"},
@@ -51,7 +53,7 @@ async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
     state["cards"], state["hint"] = cardhandler.first_handle(
         state["terms"], state["args"]["is_bgs"], max_response)
     if len(state["cards"]) == 1:
-        msg = hscard_msg(state["cards"][0], state["args"],
+        msg = await hscard_msg(state["cards"][0], state["args"],
                          state["type"])
         await bot.send(event, msg)
     elif len(state["cards"]) == 0:
@@ -70,7 +72,7 @@ async def handle_receive(bot: Bot, event: Event, state: T_State):
         if num > len(state["cards"]):
             await hearthstone_card.reject("输入的编号超过结果总数量，请重新输入。")
         card = state["cards"][num]
-        msg = hscard_msg(card, state["args"], state["type"])
+        msg = await hscard_msg(card, state["args"], state["type"])
         await hearthstone_card.reject(msg)
     elif raw.isdigit():
         page = int(raw)
@@ -95,9 +97,11 @@ def handle_args(part, args):
     return False
 
 
-def hscard_msg(card, args, type):
+async def hscard_msg(card, args, type):
     if type == "card":
-        url = cardhandler.get_pic(card, args)
+        url = await cardhandler.get_pic_offi(card, args)
+        if not url:
+            url = cardhandler.get_pic(card, args)
         return MessageSegment.image(url, timeout=10)
     elif type == "tags":
         tags = cardhandler.get_tags(card, args)
