@@ -14,6 +14,9 @@ from hearthstone.deckstrings import FormatType
 import httpx
 from .rules import FALSE_POSITIVE_RULES
 from nonebot import require
+from nonebot.log import logger
+import traceback
+
 
 scheduler = require("nonebot_plugin_apscheduler").scheduler
 
@@ -54,14 +57,18 @@ def init_clusters(cluster_data):
 
 cluster_url = "https://hsreplay.net/analytics/clustering/data/live/FT_STANDARD/"
 deck_url = "https://hsreplay.net/api/v1/archetypes/"
-cluster_data = httpx.get(cluster_url).json()
-clusters, cluster_map = init_clusters(cluster_data)
 header = {"accept-language": "zh-CN,zh"}
-deck_data = httpx.get(deck_url, headers=header).json()
-
+try:
+    cluster_data = httpx.get(cluster_url).json()
+    clusters, cluster_map = init_clusters(cluster_data)
+    deck_data = httpx.get(deck_url, headers=header).json()
+    not_classify = False
+except:
+    logger.error(traceback.format_exc())
+    not_classify = True
 
 def deckname(cardlist, hero, format):
-    if format != FormatType.FT_STANDARD:
+    if format != FormatType.FT_STANDARD or not_classify:
         return class_name[hero]
     cluster = clusters[hero]
     deck = {dbf_id: count for (dbf_id, count) in cardlist.cards}
@@ -164,6 +171,8 @@ def calculate_archetype_normalizers(clusters):
 
 @scheduler.scheduled_job("cron", hour="6")
 async def update():
+    if not_classify:
+        return
     global clusters, cluster_map, deck_data
     async with httpx.AsyncClient() as client:
         cluster_data = await client.get(cluster_url)
