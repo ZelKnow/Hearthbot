@@ -57,11 +57,11 @@ def init_clusters(cluster_data):
 
 cluster_url = "https://hsreplay.net/analytics/clustering/data/live/FT_STANDARD/"
 deck_url = "https://hsreplay.net/api/v1/archetypes/"
-header = {"accept-language": "zh-CN,zh"}
+headers = {"accept-language": "zh-CN,zh"}
 try:
     cluster_data = httpx.get(cluster_url).json()
     clusters, cluster_map = init_clusters(cluster_data)
-    deck_data = httpx.get(deck_url, headers=header).json()
+    deck_data = httpx.get(deck_url, headers=headers).json()
     not_classify = False
 except:
     logger.error(traceback.format_exc())
