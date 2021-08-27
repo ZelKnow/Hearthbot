@@ -13,7 +13,6 @@ import re
 from nonebot import get_driver
 from nonebot import on_command
 from nonebot.typing import T_State
-from nonebot.rule import to_me
 from nonebot.adapters import Bot, Event
 from .card_handler import CardHandler, supported_langs
 from nonebot.adapters.cqhttp.message import MessageSegment
@@ -53,8 +52,7 @@ async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
     state["cards"], state["hint"] = cardhandler.first_handle(
         state["terms"], state["args"]["is_bgs"], max_response)
     if len(state["cards"]) == 1:
-        msg = await hscard_msg(state["cards"][0], state["args"],
-                         state["type"])
+        msg = await hscard_msg(state["cards"][0], state["args"], state["type"])
         await bot.send(event, msg)
     elif len(state["cards"]) == 0:
         await hearthstone_card.finish(state["hint"])

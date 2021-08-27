@@ -49,7 +49,7 @@ def parse_deck(text):
         try:
             deck = Deck.from_deckstring(text + "=" * i)
             return deck
-        except Exception as e:
+        except:
             continue
     return None
 

@@ -18,6 +18,8 @@ import json
 import os
 import re
 import httpx
+from nonebot.log import logger
+import traceback
 
 path = os.path.dirname(__file__)
 with open(os.path.join(path, "translation.json"),
@@ -60,16 +62,20 @@ CardXML.loc_text = loc_text
 CardXML.loc_flavor = loc_flavor
 
 
-def create_access_token(client_id, client_secret, region = 'us'):
-    if(region=='cn'):
+def create_access_token(client_id, client_secret, region='us'):
+    if (region == 'cn'):
         url = 'https://www.battlenet.com.cn/oauth/token'
     else:
         url = "https://%s.battle.net/oauth/token" % region
     body = {"grant_type": 'client_credentials'}
     try:
-        response = httpx.post(url, data=body, auth=(client_id, client_secret), timeout = 9).json()
+        response = httpx.post(url,
+                              data=body,
+                              auth=(client_id, client_secret),
+                              timeout=9).json()
         return response["access_token"]
     except:
+        logger.error(traceback.format_exc())
         return None
 
 
@@ -86,7 +92,8 @@ class CardHandler():
         cards_list = []
         for card in db:
             if db[card].type != CardType.ENCHANTMENT:
-                db[card].alter = alter.get(db[card].strings[GameTag.CARDNAME]["zhCN"], [])
+                db[card].alter = alter.get(
+                    db[card].strings[GameTag.CARDNAME]["zhCN"], [])
                 cards_list.append(db[card])
         cards_list.sort(key=operator.attrgetter("collectible",
                                                 "card_set.is_standard",
@@ -134,20 +141,22 @@ class CardHandler():
             self.stringify_card(cards[i], i + 1, is_bgs)
             for i in range(offset, min(offset + page_size, num_cards)))
         return hint
-    
+
     def search(self, term, card, is_bgs):
         if re.match(r"\d+[\\/]\d+[\\/]\d+", term):
             cost = card.tags[GameTag.TECH_LEVEL] if is_bgs else card.cost
             attack = card.atk
-            health =  (card.durability if card.type == CardType.WEAPON else card.health)
-            if [cost, attack, health] == list(map(int, re.split(r"[\\/]", term))):
+            health = (card.durability
+                      if card.type == CardType.WEAPON else card.health)
+            if [cost, attack,
+                    health] == list(map(int, re.split(r"[\\/]", term))):
                 return True
         elif any([term in altername for altername in card.alter]):
             return True
         elif term in card.loc_name("zhCN").lower():
             return True
         return False
-    
+
     def stringify_card(self, card, index, is_bgs):
         collectible = "可收藏" if card.collectible else "不可收藏"
         card_class = (translation["multiclass"][card.multi_class_group.name]
@@ -184,7 +193,8 @@ class CardHandler():
         locale = args["lang"]
         locale = locale[0:2] + "_" + locale[2:4]
         game_mode = "battlegrounds" if args["is_bgs"] else "constructed"
-        url = "https://api.blizzard.com/hearthstone/cards/%d?locale=%s&gameMode=%s&access_token=%s" % (card.dbf_id, locale, game_mode, self.token)
+        url = "https://api.blizzard.com/hearthstone/cards/%d?locale=%s&gameMode=%s&access_token=%s" % (
+            card.dbf_id, locale, game_mode, self.token)
         async with httpx.AsyncClient() as client:
             resp = await client.get(url)
             if resp:

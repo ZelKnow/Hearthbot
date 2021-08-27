@@ -45,7 +45,7 @@ async def handle_receive(bot: Bot, event: Event, state: T_State):
     for i in range(len(decks)):
         try:
             img = deck_handler.deck_to_image(decks[i], names[i], locale)
-        except Exception as e:
+        except:
             logger.error(traceback.format_exc())
             await hearthstone_deck.finish("卡组生成失败，请检查代码及命令格式！")
         deck_imgs.append(img)

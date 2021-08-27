@@ -2,7 +2,7 @@
 # -*- encoding: utf-8 -*-
 """
 @File          : rules.py
-@Description   : 
+@Description   :
 @Date          : 2021/08/19 22:09:16
 @Author        : HearthSim
 @Github        : https://github.com/HearthSim
@@ -55,9 +55,7 @@ def is_odd_only_deck(data_point):
 def is_no_minion_deck(data_point):
     for dbf_id in data_point["cards"]:
         card = db[int(dbf_id)]
-        if (card.type != CardType.SPELL and
-                dbf_id != 61503  # C'Thun, The Shattered is not a real minion
-            ):
+        if (card.type != CardType.SPELL and dbf_id != 61503):
             return False
     return True
 

@@ -2,8 +2,8 @@
 # -*- encoding: utf-8 -*-
 """
 @File          : archetype.py
-@Description   : Classify decks. Code from 
-                 https://github.com/HearthSim/hsarchetypes 
+@Description   : Classify decks. Code from
+                 https://github.com/HearthSim/hsarchetypes
 @Date          : 2021/08/20 08:46:31
 @Author        : ZelKnow
 @Github        : https://github.com/ZelKnow
@@ -16,7 +16,6 @@ from .rules import FALSE_POSITIVE_RULES
 from nonebot import require
 from nonebot.log import logger
 import traceback
-
 
 scheduler = require("nonebot_plugin_apscheduler").scheduler
 
@@ -41,7 +40,7 @@ def init_clusters(cluster_data):
         hero = raw_cluster["player_class"].upper()
         cluster = {}
         for deck_id in raw_cluster["signatures"]:
-            if (raw_cluster["cluster_map"][deck_id] == None):
+            if raw_cluster["cluster_map"][deck_id] is None:
                 continue
             temp = {}
             temp["signature_weights"] = dict(
@@ -66,6 +65,7 @@ try:
 except:
     logger.error(traceback.format_exc())
     not_classify = True
+
 
 def deckname(cardlist, hero, format):
     if format != FormatType.FT_STANDARD or not_classify:
