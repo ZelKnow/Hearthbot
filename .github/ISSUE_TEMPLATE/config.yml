@@ -1,0 +1,5 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 提问
+    url: https://github.com/ZelKnow/Hearthbot/discussions/new
+    about: 使用中遇到问题，请先在此处寻求帮助。
