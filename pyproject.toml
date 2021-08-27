@@ -17,7 +17,9 @@ nonebot-plugin-apscheduler = "^0.1.2"
 
 [tool.poetry.dev-dependencies]
 nonebot-plugin-test = "^0.3.0"
+flake8 = "^3.9.2"
 yapf = "^0.31.0"
+toml = "^0.10.2"
 
 [nonebot.plugins]
 plugins = []
