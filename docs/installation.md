@@ -3,7 +3,8 @@
 ## 准备
 
 ### git
-首先，你需要安装git，可参考[github文档](https://docs.github.com/cn/github/getting-started-with-github/quickstart/set-up-git)进行安装和配置。
+
+可参考[github文档](https://docs.github.com/cn/github/getting-started-with-github/quickstart/set-up-git)进行安装和配置。
 
 ### 包管理器
 
@@ -32,6 +33,11 @@ poetry install --no-dev
 | AUTO_AGREE    | 是否自动同意加群和加好友邀请               |
 | COMMAND_START | 命令的起始标记，用于判断一条消息是不是命令 |
 | MAX_RESPONSE  | 输出搜索结果时一页最多展示多少条           |
+| BLIZZ_ID      | 战网API的Client ID                         |
+| BLIZZ_SEC     | 战网API的Client Secret                     |
+
+其中战网API可在[此处](https://develop.battle.net/)申请。如不填则使用[HearthstoneJson](https://hearthstonejson.com/)提供的API来获取卡牌图片。
+
 
 ## 安装go-cqhttp
 
