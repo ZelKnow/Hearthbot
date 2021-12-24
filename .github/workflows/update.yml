@@ -1,0 +1,36 @@
+name: Update Hearthbot Database
+on: 
+  schedule:
+    - cron:  '0 2,12,22 * * *'
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Set up Python 3.8
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.8"
+      - name: Install Poetry
+        uses: snok/install-poetry@v1
+        with:
+          virtualenvs-create: true
+          virtualenvs-in-project: true
+          installer-parallel: true
+      - name: Update dependencies
+        run: |
+          poetry update hearthstone
+          poetry update hearthstone-data
+          poetry export -o requirements.txt
+      - name: Update submodules
+        run: git submodule update --remote
+      - name: Commit and push if changed
+        run: |
+          git diff
+          git config --global user.email "shenghuang@stu.pku.edu.cn"
+          git config --global user.name "ZelKnow"
+          git add .
+          git commit -m "Hearthstone update"
+          git push
+          
+  
