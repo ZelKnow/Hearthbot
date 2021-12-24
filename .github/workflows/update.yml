@@ -1,7 +1,7 @@
 name: Update Hearthbot Database
-on: 
+on:
   schedule:
-    - cron:  '0 2,12,22 * * *'
+    - cron:  '15 2,12,22 * * *'
 jobs:
   update:
     runs-on: ubuntu-latest
@@ -24,13 +24,15 @@ jobs:
           poetry export -o requirements.txt
       - name: Update submodules
         run: git submodule update --remote
-      - name: Commit and push if changed
+      - name: Commit
         run: |
           git diff
           git config --global user.email "shenghuang@stu.pku.edu.cn"
           git config --global user.name "ZelKnow"
           git add .
           git commit -m "Hearthstone update"
-          git push
-          
-  
+      - name: Push
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: ${{ github.ref }}
