@@ -1,7 +1,8 @@
 name: Update Hearthbot Database
 on:
+  workflow_dispatch:
   schedule:
-    - cron:  '15 2,12,22 * * *'
+    - cron: '15 2,12,22 * * *'
 jobs:
   update:
     runs-on: ubuntu-latest
