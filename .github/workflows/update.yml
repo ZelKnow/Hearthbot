@@ -27,10 +27,13 @@ jobs:
         run: git submodule update --remote
       - name: Commit
         run: |
-          git config --global user.email "shenghuang@stu.pku.edu.cn"
-          git config --global user.name "ZelKnow"
+          git config --global user.email "$(git log --format='%ae' HEAD^!)"
+          git config --global user.name "$(git log --format='%an' HEAD^!)"
           git add .
-          git commit -m "Hearthstone update" --allow-empty
+          if [ -z "$(git status --porcelain)" ]; then
+            exit 0
+          fi
+          git commit -m "Hearthstone update"
       - name: Push
         uses: ad-m/github-push-action@master
         with:
