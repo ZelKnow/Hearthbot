@@ -24,7 +24,9 @@ jobs:
           poetry update hearthstone-data
           poetry export -o requirements.txt
       - name: Update submodules
-        run: git submodule update --remote
+        run: |
+          git submodule update --init --recursive
+          git submodule update --remote --recursive
       - name: Commit
         run: |
           git config --global user.email "$(git log --format='%ae' HEAD^!)"
