@@ -57,9 +57,9 @@ h11==0.12.0; python_full_version >= "3.7.3" and python_full_version < "4.0.0" an
 h2==4.1.0; python_full_version >= "3.7.3" and python_full_version < "4.0.0" and python_version >= "3.6" \
     --hash=sha256:03a46bcf682256c95b5fd9e9a99c1323584c3eec6440d379b9903d709476bc6d \
     --hash=sha256:a83aca08fbe7aacb79fec788c9c0bac936343560ed9ec18b82a13a12c28d2abb
-hearthstone-data==130051.1 \
-    --hash=sha256:ff090f5ae1a4aa3dbc20b16243cc0dfa1c84d365187db65a9b49de224e690e24 \
-    --hash=sha256:102cd366ea0669d1fbbfc70ec8d36368c8c43b4f5b385ebd959e8b3d6bc67d57
+hearthstone-data==131337.1 \
+    --hash=sha256:18bb29120ade8755ee3a1d12a59e6f4ccd79e4dc55c6daed7fb7bcd4d8dff5f6 \
+    --hash=sha256:970843581186544aff896d21d14b8e73190945ba4a80ab66169e538e12d0696d
 hearthstone==5.55.0 \
     --hash=sha256:432e1b34e18b0242e2d3124028eedd1177514f2acd521d19e1902e9b6e5e0ddb \
     --hash=sha256:06ff6c653b687219b4bb66d3c238e17ea2f6543a892f02a2e3a5805b66d1af59
