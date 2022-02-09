@@ -24,7 +24,7 @@ poetry install --no-dev
 
 ## 配置
 
-打开项目根目录下的.env.prod进行项目的配置。
+在项目根目录下新建一个`.env.prod`文件，并进行相应配置。根目录下的[`.env.example`](https://github.com/ZelKnow/Hearthbot/blob/master/docs/installation.md)文件是一个示例配置，可供参考。
 
 | 配置项        | 说明                                       |
 | ------------- | ------------------------------------------ |
@@ -51,3 +51,13 @@ poetry run nb run
 ```
 2. 启动go-cqhttp
 3. 在QQ聊天框对机器人输入```!help```，如机器人回复帮助信息，则启动成功。
+
+## 更新
+
+由于炉石会进行版本更新以及平衡性补丁更新等，本仓库设置了一个Github Action自动化，固定于每天8点和10点检查更新。你可以使用
+
+```
+git pull --recurse-submodules
+```
+
+命令来拉取更新。
