@@ -97,9 +97,7 @@ def handle_args(part, args):
 
 async def hscard_msg(card, args, type):
     if type == "card":
-        url = await cardhandler.get_pic_offi(card, args)
-        if not url:
-            url = cardhandler.get_pic(card, args)
+        url = await cardhandler.get_pic(card, args)
         return MessageSegment.image(url, timeout=10)
     elif type == "tags":
         tags = cardhandler.get_tags(card, args)

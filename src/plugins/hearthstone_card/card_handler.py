@@ -68,15 +68,11 @@ def create_access_token(client_id, client_secret, region='us'):
     else:
         url = "https://%s.battle.net/oauth/token" % region
     body = {"grant_type": 'client_credentials'}
-    try:
-        response = httpx.post(url,
-                              data=body,
-                              auth=(client_id, client_secret),
-                              timeout=9).json()
-        return response["access_token"]
-    except:
-        logger.error(traceback.format_exc())
-        return None
+    response = httpx.post(url,
+                          data=body,
+                          auth=(client_id, client_secret),
+                          timeout=9).json()
+    return response["access_token"]
 
 
 class CardHandler():
@@ -86,7 +82,12 @@ class CardHandler():
         self.bgs_list = self._init_bgs(db)
         self.Blizz_ID = Blizz_ID
         self.Blizz_Sec = Blizz_Sec
-        self.token = create_access_token(Blizz_ID, Blizz_Sec)
+        self.use_offi = False
+        try:
+            self.token = create_access_token(Blizz_ID, Blizz_Sec)
+            self.use_offi = True
+        except:
+            logger.info("未填写暴雪API信息或获取token失败，改为使用hearthstonejson提供的API")
 
     def _init_cards(self, db):
         cards_list = []
@@ -172,7 +173,13 @@ class CardHandler():
                 (index, name, gold, cost, card_class, card_type, collectible,
                  card_set))
 
-    def get_pic(self, card, args):
+    async def get_pic(self, card, args):
+        if self.use_offi:
+            return await self.get_pic_offi(card, args)
+        else:
+            return self.get_pic_hsj(card, args)
+
+    def get_pic_hsj(self, card, args):
         if args["is_bgs"]:
             if 1429 not in card.tags:
                 return (
