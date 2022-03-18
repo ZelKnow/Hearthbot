@@ -1,5 +1,6 @@
 {
     "set": {
+        "THE_SUNKEN_CITY": "沉没之城",
         "ALTERAC_VALLEY": "奥特兰克",
         "STORMWIND": "暴风城",
         "THE_BARRENS": "贫瘠之地",
@@ -64,6 +65,24 @@
         "FROST": "冰霜"
     },
     "race": {
+        "TROLL": "巨魔",
+        "OGRE": "食人魔",
+        "TAUREN": "牛头人",
+        "LOCK": "锁",
+        "HUMAN": "人类",
+        "BLOODELF": "血精灵",
+        "UNDEAD": "亡灵",
+        "GNOME": "侏儒",
+        "DWARF": "矮人",
+        "DRAENEI": "德莱尼人",
+        "HALFORC": "半兽人",
+        "CENTAUR": "半人马",
+        "GOBLIN": "地精",
+        "FURBOLG": "熊怪",
+        "EGG": "蛋",
+        "WORGEN": "狼人",
+        "TREANT": "树人",
+        "HIGHELF": "高等精灵",
         "NIGHTELF": "暗夜精灵",
         "BEAST": "野兽",
         "DRAGON": "龙",
