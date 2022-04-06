@@ -12,9 +12,11 @@
         "TB": "乱斗模式",
         "TGT": "冠军的试炼",
         "HERO_SKINS": "皮肤",
-        "LEGACY": "基本",
+        "BASIC": "基本",
+        "LEGACY": "怀旧",
         "CORE": "核心",
         "BATTLEGROUNDS": "战棋",
+        "LETTUCE": "佣兵战纪",
         "BOOMSDAY": "砰砰计划",
         "BRM": "黑石山",
         "GANGS": "加基森",
@@ -56,6 +58,7 @@
         "PALADIN_WARRIOR": "骑战"
     },
     "spellschool": {
+        "INVALID": "无法术派系",
         "FIRE": "火焰",
         "ARCANE": "奥术",
         "HOLY": "神圣",
@@ -65,6 +68,8 @@
         "FROST": "冰霜"
     },
     "race": {
+        "INVALID": "无种族",
+        "NAGA": "纳迦",
         "TROLL": "巨魔",
         "OGRE": "食人魔",
         "TAUREN": "牛头人",
@@ -98,6 +103,7 @@
         "QUILBOAR": "野猪人"
     },
     "rarity": {
+        "INVALID": "无稀有度",
         "LEGENDARY": "传说",
         "COMMON": "普通",
         "RARE": "稀有",
@@ -105,6 +111,11 @@
         "FREE": "免费"
     },
     "type": {
+        "BATTLEGROUND_HERO_BUDDY": "伙伴计量槽",
+        "LETTUCE_ABILITY": "佣兵能力",
+        "GAME_MODE_BUTTON": "按钮",
+        "MOVE_MINION_HOVER_TARGET": "按钮",
+        "INVALID": "无类型",
         "MINION": "随从牌",
         "SPELL": "法术牌",
         "WEAPON": "武器牌",
@@ -113,6 +124,7 @@
         "ENCHANTMENT": "强化"
     },
     "class": {
+        "INVALID": "无职业",
         "DEMONHUNTER": "恶魔猎手",
         "NEUTRAL": "中立",
         "MAGE": "法师",

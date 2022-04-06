@@ -12,14 +12,13 @@ __author__ = "ZelKnow"
 from hearthstone import cardxml
 from hearthstone.cardxml import CardXML
 from hearthstone.enums import CardType, GameTag, Race, Rarity, MultiClassGroup, CardSet
-import operator
 import math
 import json
 import os
 import re
 import httpx
 from nonebot.log import logger
-import traceback
+from functools import cmp_to_key
 
 path = os.path.dirname(__file__)
 with open(os.path.join(path, "translation.json"),
@@ -33,12 +32,19 @@ supported_langs = translation["supported_langs"]
 
 def card_compare(a, b):
     if a.collectible == b.collectible:
-        if a.card_set.is_standard == b.card_set.is_standard:
-            return a.card_set.numerator > b.card_set.numerator
+        if type(a.card_set) is int:
+            return -1
+        elif type(b.card_set) is int:
+            return 1
+        elif a.card_set.is_standard == b.card_set.is_standard:
+            if a.card_set.numerator == b.card_set.numerator:
+                return 1 if a.cost < b.cost else -1
+            else:
+                return 1 if a.card_set.numerator > b.card_set.numerator else -1
         else:
-            return a.card_set.is_standard
+            return 1 if a.card_set.is_standard else -1
     else:
-        return a.collectible
+        return 1 if a.collectible else -1
 
 
 def loc_name(self, locale):
@@ -96,10 +102,7 @@ class CardHandler():
                 db[card].alter = alter.get(
                     db[card].strings[GameTag.CARDNAME]["zhCN"], [])
                 cards_list.append(db[card])
-        cards_list.sort(key=operator.attrgetter("collectible",
-                                                "card_set.is_standard",
-                                                "card_set.numerator", "cost"),
-                        reverse=True)
+        cards_list.sort(key=cmp_to_key(card_compare), reverse=True)
         return cards_list
 
     def _init_bgs(self, db):
@@ -163,12 +166,13 @@ class CardHandler():
         card_class = (translation["multiclass"][card.multi_class_group.name]
                       if card.multi_class_group != MultiClassGroup.INVALID else
                       translation["class"][card.card_class.name])
-        cost = "%d星" % card.tags[
-            GameTag.TECH_LEVEL] if is_bgs else "%d费" % card.cost
+        cost = ("%d星" % card.tags[GameTag.TECH_LEVEL] if is_bgs else "%d费" %
+                card.cost)
         card_type = translation["type"][card.type.name]
         name = card.loc_name("zhCN")
         gold = "（金）" if is_bgs and 1429 not in card.tags else ""
-        card_set = translation["set"][card.card_set.name]
+        card_set = ("无" if type(card.card_set) is int else
+                    translation["set"][card.card_set.name])
         return ("\\%d：%s%s，%s%s%s，%s，%s" %
                 (index, name, gold, cost, card_class, card_type, collectible,
                  card_set))
@@ -238,7 +242,8 @@ class CardHandler():
                       (translation["multiclass"][card.multi_class_group.name]
                        if card.multi_class_group != MultiClassGroup.INVALID
                        else translation["class"][card.card_class.name]))
-        card_set = "\n扩展包：%s" % translation["set"][card.card_set.name]
+        card_set = "\n扩展包：%s" % ("无" if type(card.card_set) is int else
+                                 translation["set"][card.card_set.name])
         collectible = "\n可否收藏：%s" % ("是" if card.collectible else "否")
         tags = (name + card_id + text + flavor + card_class + race + card_set +
                 cost + stats + rarity + collectible)
