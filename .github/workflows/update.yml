@@ -29,13 +29,13 @@ jobs:
           git submodule update --remote --recursive
       - name: Commit
         run: |
-          git config --global user.email "$(git log --format='%ae' HEAD^!)"
-          git config --global user.name "$(git log --format='%an' HEAD^!)"
+          git config --global user.email zelknow@outlook.com
+          git config --global user.name ZelKnow
           git add .
           if [ -z "$(git status --porcelain)" ]; then
             exit 0
           fi
-          git commit -m "Hearthstone update"
+          git commit -m "✨feat: Hearthstone update"
       - name: Push
         uses: ad-m/github-push-action@master
         with:
