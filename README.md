@@ -6,7 +6,7 @@
 
 # Hearthbot
 
-_✨ 基于[Nonebot2](https://github.com/nonebot/nonebot2)的[炉石传说](https://hs.blizzard.cn/home)QQ聊天机器人 ✨_
+_✨ 基于 [Nonebot2](https://github.com/nonebot/nonebot2) 的[炉石传说](https://hs.blizzard.cn/home) QQ 聊天机器人 ✨_
 
 </div>
 
@@ -38,20 +38,20 @@ _✨ 基于[Nonebot2](https://github.com/nonebot/nonebot2)的[炉石传说](http
 </p>
 
 ## 简介
-Hearthbot是一款炉石传说QQ聊天机器人。基于[nonebot2](https://github.com/nonebot/nonebot2)开发，可与[go-cqhttp](https://github.com/Mrs4s/go-cqhttp)搭配使用。具有查询炉石传说卡牌、生成卡组图片等功能。
+Hearthbot 是一款炉石传说 QQ 聊天机器人。基于 [nonebot2](https://github.com/nonebot/nonebot2) 开发，可与 [go-cqhttp](https://github.com/Mrs4s/go-cqhttp) 搭配使用。具有查询炉石传说卡牌、生成卡组图片等功能。
 
 ## Todo
 
 ### 卡牌插件
 
 - [x] 查询卡图
-- [x] 查询tags
+- [x] 查询 tags
 - [x] 查询原画
 - [x] 支持多语言
 - [x] 支持战棋
 - [x] 身材查询
 - [x] 别名查询
-- [x] 使用官方api
+- [x] 使用官方 api
 - [ ] 模糊查询
 - [ ] 查询语音
 
@@ -81,4 +81,4 @@ Hearthbot是一款炉石传说QQ聊天机器人。基于[nonebot2](https://githu
 
 ## 协议
 
-本项目使用AGPLv3协议，意味着你可以运行本项目，并向其他用户提供服务。但如果你对本项目进行了任何修改，则需要将你修改后的版本对你的用户开源。请自觉遵守协议，维护良好的开源社区环境。
+本项目使用 AGPLv3 协议，意味着你可以运行本项目，并向其他用户提供服务。但如果你对本项目进行了任何修改，则需要将你修改后的版本对你的用户开源。请自觉遵守协议，维护良好的开源社区环境。
