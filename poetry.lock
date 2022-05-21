@@ -221,7 +221,7 @@ hearthstone-data = "*"
 
 [[package]]
 name = "hearthstone-data"
-version = "139522.1"
+version = "139719.1"
 description = "CardDefs.xml and Strings for Hearthstone"
 category = "main"
 optional = false
@@ -910,8 +910,8 @@ hearthstone = [
     {file = "hearthstone-5.60.0.tar.gz", hash = "sha256:cb9bd444de9e0e9787b81ab87e7a00d577a61d90ed9c7ebe772cd54dbeb9410e"},
 ]
 hearthstone-data = [
-    {file = "hearthstone_data-139522.1-py2.py3-none-any.whl", hash = "sha256:7f8b7f6f9884fefe065c466846bd01b650c7f0134366584555c819d8ec06f643"},
-    {file = "hearthstone_data-139522.1.tar.gz", hash = "sha256:7ac655d2a3835cd832926dcc76e7563b2a60b5b17dcd9295c76cb3bef6d4f441"},
+    {file = "hearthstone_data-139719.1-py2.py3-none-any.whl", hash = "sha256:8b502b39f4fb892fd46a6c3b1324770ef20eabf3b75a34ba628e81ce11035734"},
+    {file = "hearthstone_data-139719.1.tar.gz", hash = "sha256:b48eca619dcef47d5eab62e11693184caad07a7f2fc5f690086ba4b30f8d2491"},
 ]
 hpack = [
     {file = "hpack-4.0.0-py3-none-any.whl", hash = "sha256:84a076fad3dc9a9f8063ccb8041ef100867b1878b25ef0ee63847a5d53818a6c"},
