@@ -210,7 +210,7 @@ hyperframe = ">=6.0,<7"
 
 [[package]]
 name = "hearthstone"
-version = "5.61.1"
+version = "5.62.1"
 description = "CardDefs.xml parser and Hearthstone enums for Python"
 category = "main"
 optional = false
@@ -221,7 +221,7 @@ hearthstone-data = "*"
 
 [[package]]
 name = "hearthstone-data"
-version = "141643.1"
+version = "142295.1"
 description = "CardDefs.xml and Strings for Hearthstone"
 category = "main"
 optional = false
@@ -906,12 +906,12 @@ h2 = [
     {file = "h2-4.1.0.tar.gz", hash = "sha256:a83aca08fbe7aacb79fec788c9c0bac936343560ed9ec18b82a13a12c28d2abb"},
 ]
 hearthstone = [
-    {file = "hearthstone-5.61.1-py3-none-any.whl", hash = "sha256:cc723f3f577f59c527babcd7e5bc460ecef45be3ccaebef4aa9b6885a96c9db0"},
-    {file = "hearthstone-5.61.1.tar.gz", hash = "sha256:0f32fd13f916494441c42d35acf1f95967d50d7844f9472c6a917ec4fc5a4478"},
+    {file = "hearthstone-5.62.1-py3-none-any.whl", hash = "sha256:0d11fdfa5cc8a2738b71dc7a97bfd54d74fd1df90f8eb04d500da2a05a50e65c"},
+    {file = "hearthstone-5.62.1.tar.gz", hash = "sha256:b8491cc794f0d00479cf451f7bb33faff0a9b8abf352b83e90e1e934d880dcf1"},
 ]
 hearthstone-data = [
-    {file = "hearthstone_data-141643.1-py2.py3-none-any.whl", hash = "sha256:0464114945bd15beb28b3966e2a05482850c9bc511e0b3e87a267ade4595a3e2"},
-    {file = "hearthstone_data-141643.1.tar.gz", hash = "sha256:5a14a7b1502c62604a7cf497debd45ed2cd3b251eaaba407cc556309486e9272"},
+    {file = "hearthstone_data-142295.1-py2.py3-none-any.whl", hash = "sha256:ac2adc69ee89cf1c20dc4b2917880f9e4a5512c1fc9426220a04af524c08af7f"},
+    {file = "hearthstone_data-142295.1.tar.gz", hash = "sha256:facd04f78b7b8ee694879aec322942894fa4397e59f6e830fc6dd17f4e575db0"},
 ]
 hpack = [
     {file = "hpack-4.0.0-py3-none-any.whl", hash = "sha256:84a076fad3dc9a9f8063ccb8041ef100867b1878b25ef0ee63847a5d53818a6c"},
