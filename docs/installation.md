@@ -58,6 +58,7 @@ poetry run nb run
 
 ```
 git pull --recurse-submodules
+poetry install
 ```
 
 命令来拉取更新。

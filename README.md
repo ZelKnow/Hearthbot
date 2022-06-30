@@ -35,6 +35,8 @@ _✨ 基于 [Nonebot2](https://github.com/nonebot/nonebot2) 的[炉石传说](ht
   <a href="https://github.com/ZelKnow/Hearthbot/blob/master/docs/installation.md">安装</a>
   ·
   <a href="https://github.com/ZelKnow/Hearthbot/blob/master/docs/usage.md">功能介绍</a>
+  ·
+  <a href="https://github.com/ZelKnow/Hearthbot/blob/master/docs/installation.md#%E6%9B%B4%E6%96%B0">如何更新？</a>
 </p>
 
 ## 简介
