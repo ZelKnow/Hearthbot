@@ -98,7 +98,8 @@ class CardHandler():
     def _init_cards(self, db):
         cards_list = []
         for card in db:
-            if db[card].type != CardType.ENCHANTMENT:
+            if db[card].type != CardType.ENCHANTMENT and "zhCN" in db[
+                    card].strings[GameTag.CARDNAME]:
                 db[card].alter = alter.get(
                     db[card].strings[GameTag.CARDNAME]["zhCN"], [])
                 cards_list.append(db[card])
