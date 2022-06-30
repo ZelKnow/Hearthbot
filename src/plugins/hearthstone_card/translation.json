@@ -1,5 +1,6 @@
 {
     "set": {
+        "REVENDRETH": "纳斯利亚",
         "THE_SUNKEN_CITY": "沉没之城",
         "ALTERAC_VALLEY": "奥特兰克",
         "STORMWIND": "暴风城",
@@ -69,6 +70,9 @@
     },
     "race": {
         "INVALID": "无种族",
+        "GRONN": "戈隆",
+        "OLDGOD": "古神",
+        "PANDAREN": "熊猫人",
         "NAGA": "纳迦",
         "TROLL": "巨魔",
         "OGRE": "食人魔",
