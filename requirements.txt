@@ -57,9 +57,9 @@ h11==0.12.0 ; python_version >= "3.8" and python_version < "4.0" \
 h2==4.1.0 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:03a46bcf682256c95b5fd9e9a99c1323584c3eec6440d379b9903d709476bc6d \
     --hash=sha256:a83aca08fbe7aacb79fec788c9c0bac936343560ed9ec18b82a13a12c28d2abb
-hearthstone==5.68.0 ; python_version >= "3.8" and python_version < "4.0" \
-    --hash=sha256:64648cb59d2c6bd9fdc6cad10d25b975779636e99c73489049f14b672b37ea8a \
-    --hash=sha256:e12d7a2dacfb481290fa111b85a7b838f9743b9bd2c94caf64421081e4fc583e
+hearthstone==5.68.1 ; python_version >= "3.8" and python_version < "4.0" \
+    --hash=sha256:41f55b774381bdfbd6ff776b3e909b2596c690fd0a1b193d11538ade7c52d024 \
+    --hash=sha256:78b2cfa25cccabb4b302f2485f680d4953777a3b0227115c3b2bd033835afcc3
 hpack==4.0.0 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:84a076fad3dc9a9f8063ccb8041ef100867b1878b25ef0ee63847a5d53818a6c \
     --hash=sha256:fc41de0c63e687ebffde81187a948221294896f6bdc0ae2312708df339430095
