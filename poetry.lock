@@ -211,7 +211,7 @@ hyperframe = ">=6.0,<7"
 
 [[package]]
 name = "hearthstone"
-version = "5.70.1"
+version = "5.71.5"
 description = "CardDefs.xml parser and Hearthstone enums for Python"
 category = "main"
 optional = false
@@ -913,8 +913,8 @@ h2 = [
     {file = "h2-4.1.0.tar.gz", hash = "sha256:a83aca08fbe7aacb79fec788c9c0bac936343560ed9ec18b82a13a12c28d2abb"},
 ]
 hearthstone = [
-    {file = "hearthstone-5.70.1-py3-none-any.whl", hash = "sha256:524ff68e8d087bad136832ec45f048f414176f3e7a991add0871d66d444b4958"},
-    {file = "hearthstone-5.70.1.tar.gz", hash = "sha256:6971b27e9550f4c070003d50c605ae4652e87a831de87f477ea3063b8aff606f"},
+    {file = "hearthstone-5.71.5-py3-none-any.whl", hash = "sha256:d3e06f8e0ead727f26d267e3e2c4bf7037e507d7c7f05af08d90f533edb7c8b4"},
+    {file = "hearthstone-5.71.5.tar.gz", hash = "sha256:3d38ddbcc8c8598ffd4d97d2240bded3100837c2b9a2fe0ec9864b26da116fad"},
 ]
 hpack = [
     {file = "hpack-4.0.0-py3-none-any.whl", hash = "sha256:84a076fad3dc9a9f8063ccb8041ef100867b1878b25ef0ee63847a5d53818a6c"},
