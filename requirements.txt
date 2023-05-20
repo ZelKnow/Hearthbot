@@ -373,7 +373,7 @@ urllib3==1.26.7 ; python_version >= "3.8" and python_version < "4" \
 uvicorn[standard]==0.15.0 ; python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:17f898c64c71a2640514d4089da2689e5db1ce5d4086c2d53699bf99513421c1 \
     --hash=sha256:d9a3c0dd1ca86728d3e235182683b4cf94cd53a867c288eaeca80ee781b2caff
-uvloop==0.16.0 ; sys_platform != "win32" and sys_platform != "cygwin" and platform_python_implementation != "PyPy" and python_version >= "3.8" and python_version < "4.0" \
+uvloop==0.16.0 ; (sys_platform != "win32" and sys_platform != "cygwin") and platform_python_implementation != "PyPy" and python_version >= "3.8" and python_version < "4.0" \
     --hash=sha256:04ff57aa137230d8cc968f03481176041ae789308b4d5079118331ab01112450 \
     --hash=sha256:089b4834fd299d82d83a25e3335372f12117a7d38525217c2258e9b9f4578897 \
     --hash=sha256:1e5f2e2ff51aefe6c19ee98af12b4ae61f5be456cd24396953244a30880ad861 \
