@@ -1,10 +1,21 @@
 {
     "set": {
-        "REVENDRETH": "纳斯利亚",
-        "THE_SUNKEN_CITY": "沉没之城",
-        "ALTERAC_VALLEY": "奥特兰克",
-        "STORMWIND": "暴风城",
-        "THE_BARRENS": "贫瘠之地",
+        "BATTLE_OF_THE_BANDS": "传奇音乐节",
+        "RETURN_OF_THE_LICH_KING": "巫妖王的进军",
+        "WILD_WEST": "决战荒芜之地",
+        "TITANS": "泰坦诸神",
+        "ISLAND_VACATION": "胜地历险记",
+        "PLACEHOLDER_202204": "占位符",
+        "WHIZBANGS_WORKSHOP": "威兹班的工坊",
+        "EVENT": "活动",
+        "PATH_OF_ARTHAS": "阿尔萨斯之路",
+        "TUTORIAL": "教程", 
+        "WONDERS": "时光之穴", 
+        "REVENDRETH": "纳斯利亚堡的悬案",
+        "THE_SUNKEN_CITY": "探寻沉没之城",
+        "ALTERAC_VALLEY": "奥特兰克的决裂",
+        "STORMWIND": "暴风城下的集结",
+        "THE_BARRENS": "贫瘠之地的锤炼",
         "DARKMOON_FAIRE": "暗月马戏团",
         "SCH": "通灵学园",
         "SCHOLOMANCE": "通灵学园",
@@ -56,7 +67,18 @@
         "WARLOCK_DEMONHUNTER": "术瞎",
         "MAGE_ROGUE": "法贼",
         "ROGUE_WARRIOR": "贼战",
-        "PALADIN_WARRIOR": "骑战"
+        "PALADIN_WARRIOR": "骑战",
+        "DEATHKNIGHT_PALADIN": "骑死",
+        "HUNTER_DEATHKNIGHT": "猎死",
+        "MAGE_HUNTER": "法猎",
+        "PALADIN_SHAMAN": "骑萨",
+        "SHAMAN_WARRIOR": "萨战",
+        "WARRIOR_DEMONHUNTER": "战瞎",
+        "DEMONHUNTER_ROGUE": "瞎贼",
+        "ROGUE_PRIEST": "贼牧",
+        "PRIEST_DRUID": "牧德",
+        "DRUID_WARLOCK": "德术",
+        "WARLOCK_MAGE": "术法"
     },
     "spellschool": {
         "INVALID": "无法术派系",
@@ -104,7 +126,11 @@
         "MECH": "机械",
         "ALL": "全部",
         "ORC": "兽人",
-        "QUILBOAR": "野猪人"
+        "QUILBOAR": "野猪人",
+        "VULPERA": "狐人",
+        "GNOLL": "豺狼人",
+        "GOLEM": "魔像",
+        "CELESTIAL": "Celestial"
     },
     "rarity": {
         "INVALID": "无稀有度",
@@ -125,7 +151,12 @@
         "WEAPON": "武器牌",
         "HERO_POWER": "技能",
         "HERO": "英雄牌",
-        "ENCHANTMENT": "强化"
+        "ENCHANTMENT": "强化",
+        "BATTLEGROUND_QUEST_REWARD": "战棋任务奖励",
+        "BATTLEGROUND_ANOMALY": "战棋畸变",
+        "BATTLEGROUND_SPELL": "酒馆法术",
+        "BATTLEGROUND_TRINKET": "战棋饰品",
+        "LOCATION": "地标"
     },
     "class": {
         "INVALID": "无职业",

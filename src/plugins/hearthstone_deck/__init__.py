@@ -12,7 +12,7 @@ __author__ = "ZelKnow"
 from nonebot import on_command
 from nonebot.plugin import on_keyword
 from nonebot.typing import T_State
-from nonebot.adapters.cqhttp.message import MessageSegment
+from nonebot.adapters.qq import MessageSegment as MessageSegment
 from nonebot.adapters import Bot, Event
 from nonebot.log import logger
 from .deck_handler import DeckHandler, supported_locale
@@ -31,7 +31,7 @@ deck_keyword = on_keyword("AAE", priority=4)
 
 @hearthstone_deck.handle()
 async def handle_receive(bot: Bot, event: Event, state: T_State):
-    parts = str(event.get_message()).split()
+    parts = str(event.get_message()).split()[1:]
     locale = "zhCN"
     if len(parts[0][1:]) == 4:
         lang = parts[0][1:]

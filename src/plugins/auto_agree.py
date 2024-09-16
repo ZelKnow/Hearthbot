@@ -10,14 +10,14 @@
 __author__ = "ZelKnow"
 
 from nonebot import on_request
-from nonebot.adapters.cqhttp import Bot, FriendRequestEvent, GroupRequestEvent
+from nonebot.adapters.onebot import V11Bot as Bot, V11Event as Event
 from nonebot.typing import T_State
 
 friend_req = on_request(priority=5)
 
 
 @friend_req.handle()
-async def friend_agree(bot: Bot, event: FriendRequestEvent, state: T_State):
+async def friend_agree(bot: Bot, event: Event.FriendRequestEvent, state: T_State):
     if bot.config.auto_agree or str(event.user_id) in bot.config.superusers:
         await bot.set_friend_add_request(flag=event.flag, approve=True)
 
@@ -26,7 +26,7 @@ group_invite = on_request(priority=5)
 
 
 @group_invite.handle()
-async def group_agree(bot: Bot, event: GroupRequestEvent, state: T_State):
+async def group_agree(bot: Bot, event: Event.GroupRequestEvent, state: T_State):
     if bot.config.auto_agree or (event.sub_type == "invite" and str(
             event.user_id) in bot.config.superusers):
         await bot.set_group_add_request(flag=event.flag,

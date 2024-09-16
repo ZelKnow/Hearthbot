@@ -10,16 +10,15 @@
 __author__ = "ZelKnow"
 
 import nonebot
-from nonebot.adapters.cqhttp import Bot as CQHTTPBot
+from nonebot.adapters.qq import Adapter as QQAdapter
 
 nonebot.init()
-app = nonebot.get_asgi()
 
 driver = nonebot.get_driver()
-driver.register_adapter("cqhttp", CQHTTPBot)
+driver.register_adapter(QQAdapter)
 
 config = driver.config
 nonebot.load_all_plugins(set(config.plugins), set(config.plugin_dirs))
 
 if __name__ == "__main__":
-    nonebot.run(app="__mp_main__:app")
+    nonebot.run()

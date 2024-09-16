@@ -15,7 +15,7 @@ from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.adapters import Bot, Event
 from .card_handler import CardHandler, supported_langs
-from nonebot.adapters.cqhttp.message import MessageSegment
+from nonebot.adapters.qq import MessageSegment as MessageSegment
 from nonebot.message import handle_event
 
 global_config = get_driver().config
@@ -43,7 +43,7 @@ hearthstone_ori = on_command("ori",
 @hearthstone_tags.handle()
 @hearthstone_card.handle()
 async def handle_frist_receive(bot: Bot, event: Event, state: T_State):
-    parts = str(event.get_message()).strip().lower().split()
+    parts = str(event.get_message()).strip().lower().split()[1:]
     state["terms"] = []
     state["args"] = {"lang": "zhCN", "is_bgs": False}
     for part in parts:
@@ -98,10 +98,10 @@ def handle_args(part, args):
 async def hscard_msg(card, args, type):
     if type == "card":
         url = await cardhandler.get_pic(card, args)
-        return MessageSegment.image(url, timeout=10)
+        return MessageSegment.image(url)
     elif type == "tags":
         tags = cardhandler.get_tags(card, args)
         return tags
     elif type == "ori":
         url = cardhandler.get_ori(card)
-        return MessageSegment.image(url, timeout=10)
+        return MessageSegment.image(url)
