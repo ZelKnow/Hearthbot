@@ -12,7 +12,7 @@ __author__ = "ZelKnow"
 from nonebot import on_command
 from nonebot.plugin import on_keyword
 from nonebot.typing import T_State
-from nonebot.adapters.qq import MessageSegment as MessageSegment
+from nonebot.adapters.onebot.v11 import MessageSegment as MessageSegment
 from nonebot.adapters import Bot, Event
 from nonebot.log import logger
 from .deck_handler import DeckHandler, supported_locale
@@ -25,7 +25,7 @@ deck_handler = DeckHandler()
 
 hearthstone_deck = on_command("deck",
                               aliases={"d", "D", "DECK", "Deck"},
-                              priority=3)
+                              priority=3, block=True)
 deck_keyword = on_keyword("AAE", priority=4)
 
 

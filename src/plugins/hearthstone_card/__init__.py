@@ -15,7 +15,7 @@ from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.adapters import Bot, Event
 from .card_handler import CardHandler, supported_langs
-from nonebot.adapters.qq import MessageSegment as MessageSegment
+from nonebot.adapters.onebot.v11 import MessageSegment as MessageSegment
 from nonebot.message import handle_event
 
 global_config = get_driver().config

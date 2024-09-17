@@ -10,7 +10,7 @@
 __author__ = "ZelKnow"
 
 import nonebot
-from nonebot.adapters.qq import Adapter as QQAdapter
+from nonebot.adapters.onebot.v11 import Adapter as QQAdapter
 
 nonebot.init()
 
