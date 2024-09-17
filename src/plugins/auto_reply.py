@@ -20,4 +20,4 @@ at_message = on_message(rule=to_me(), priority=10, block=True)
 @at_message.handle()
 async def auto_reply(bot: Bot, event: Event, state: T_State):
     if bot.config.auto_reply:
-        await bot.finish(bot.config.auto_reply)
+        await at_message.finish(bot.config.auto_reply)
