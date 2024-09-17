@@ -20,6 +20,7 @@ import traceback
 scheduler = require("nonebot_plugin_apscheduler").scheduler
 
 class_name = {
+    "DEATHKNIGHT": "死亡骑士",
     "DEMONHUNTER": "恶魔猎手",
     "MAGE": "法师",
     "DRUID": "德鲁伊",
@@ -58,9 +59,9 @@ cluster_url = "https://hsreplay.net/analytics/clustering/data/live/FT_STANDARD/"
 deck_url = "https://hsreplay.net/api/v1/archetypes/"
 headers = {"accept-language": "zh-CN,zh"}
 try:
-    cluster_data = httpx.get(cluster_url).json()
+    cluster_data = httpx.get(cluster_url, timeout=10.0).json()
     clusters, cluster_map = init_clusters(cluster_data)
-    deck_data = httpx.get(deck_url, headers=headers).json()
+    deck_data = httpx.get(deck_url, headers=headers, timeout=10.0).json()
     not_classify = False
 except:
     logger.error(traceback.format_exc())
