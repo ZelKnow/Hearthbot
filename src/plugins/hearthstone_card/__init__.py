@@ -16,7 +16,6 @@ from nonebot.typing import T_State
 from nonebot.adapters import Bot, Event
 from .card_handler import CardHandler, supported_langs
 from nonebot.adapters.onebot.v11 import MessageSegment as MessageSegment
-from nonebot.message import handle_event
 
 global_config = get_driver().config
 max_response = global_config.max_response
@@ -82,7 +81,6 @@ async def handle_receive(bot: Bot, event: Event, state: T_State):
                                                   max_response)
         await hearthstone_card.reject(state["hint"])
     else:
-        await handle_event(bot, event)
         await hearthstone_card.finish()
 
 
