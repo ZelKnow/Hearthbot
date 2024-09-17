@@ -89,11 +89,12 @@ class CardHandler():
         self.Blizz_ID = Blizz_ID
         self.Blizz_Sec = Blizz_Sec
         self.use_offi = False
-        try:
-            self.token = create_access_token(Blizz_ID, Blizz_Sec)
-            self.use_offi = True
-        except:
-            logger.info("未填写暴雪API信息或获取token失败，改为使用hearthstonejson提供的API")
+        if Blizz_ID and Blizz_Sec:
+            try:
+                self.token = create_access_token(Blizz_ID, Blizz_Sec)
+                self.use_offi = True
+            except:
+                logger.info("未填写暴雪API信息或获取token失败，改为使用hearthstonejson提供的API")
 
     def _init_cards(self, db):
         cards_list = []
