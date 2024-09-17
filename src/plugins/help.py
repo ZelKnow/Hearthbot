@@ -13,7 +13,7 @@ from nonebot import on_command
 from nonebot.typing import T_State
 from nonebot.adapters import Bot, Event
 
-help = on_command("help", aliases={"帮助", "h", "HELP", "Help"}, priority=3)
+help = on_command("help", aliases={"帮助", "h", "HELP", "Help"}, priority=3, block=True)
 
 
 @help.handle()

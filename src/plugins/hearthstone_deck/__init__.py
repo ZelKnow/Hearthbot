@@ -26,7 +26,7 @@ deck_handler = DeckHandler()
 hearthstone_deck = on_command("deck",
                               aliases={"d", "D", "DECK", "Deck"},
                               priority=3, block=True)
-deck_keyword = on_keyword("AAE", priority=4)
+deck_keyword = on_keyword("AAE", priority=4, block=True)
 
 
 @hearthstone_deck.handle()

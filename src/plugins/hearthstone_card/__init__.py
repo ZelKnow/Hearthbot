@@ -28,15 +28,18 @@ cardhandler = CardHandler(Blizz_ID, Blizz_Sec)
 hearthstone_card = on_command("card",
                               aliases={"c", "C", "CARD", "Card"},
                               state={"type": "card"},
-                              priority=0)
+                              priority=0,
+                              block=True)
 hearthstone_tags = on_command("tags",
                               aliases={"t", "T", "TAGS", "Tags", "tag"},
                               state={"type": "tags"},
-                              priority=1)
+                              priority=1,
+                              block=True)
 hearthstone_ori = on_command("ori",
                              aliases={"o", "O", "ORI", "Ori", "art"},
                              state={"type": "ori"},
-                             priority=2)
+                             priority=2,
+                             block=True)
 
 
 @hearthstone_ori.handle()
