@@ -33,7 +33,7 @@ deck_keyword = on_keyword("AAE", priority=4, block=True)
 async def handle_receive(bot: Bot, event: Event, state: T_State):
     parts = str(event.get_message()).split()[1:]
     locale = "zhCN"
-    if len(parts[0][1:]) == 4:
+    if len(parts[0]) == 4:
         lang = parts[0][1:]
         if lang[0:2].lower() + lang[2:4].upper() in supported_locale:
             locale = lang
