@@ -10,7 +10,7 @@ package-mode = false
 [tool.poetry.dependencies]
 python = "^3.9"
 nonebot2 = {extras = ["websockets", "fastapi", "httpx"], version = "^2.3.3"}
-hearthstone = "^5.40.4"
+hearthstone = "*"
 Pillow = "^9.0.0"
 nonebot-adapter-onebot = "^2.4.4"
 nonebot-plugin-apscheduler = "^0.5.0"
