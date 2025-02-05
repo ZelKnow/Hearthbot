@@ -9,9 +9,9 @@
 """
 __author__ = "ZelKnow"
 
-from hearthstone import cardxml
+from hearthstone import cardxml, stringsfile
 from hearthstone.cardxml import CardXML
-from hearthstone.enums import CardType, GameTag, Race, Rarity, MultiClassGroup, CardSet
+from hearthstone.enums import CardSet, CardType, GameTag, Locale, Race, Rarity, MultiClassGroup
 import math
 import json
 import os
@@ -21,14 +21,11 @@ from nonebot.log import logger
 from functools import cmp_to_key
 
 path = os.path.dirname(__file__)
-with open(os.path.join(path, "translation.json"),
-          encoding="utf-8") as json_file:
-    translation = json.load(json_file)
 with open(os.path.join(path, "hs-alter-name", "alter.json"),
           encoding="utf-8") as json_file:
     alter = json.load(json_file)
-supported_langs = translation["supported_langs"]
-
+supported_langs = [locale.name for locale in Locale.__members__.values()]
+translation = stringsfile.load_globalstrings('zhCN')
 
 def card_compare(a, b):
     if a.collectible == b.collectible:
@@ -61,6 +58,18 @@ def loc_text(self, locale):
 
 def loc_flavor(self, locale):
     return self.strings[GameTag.FLAVORTEXT][locale]
+
+
+def translate(data):
+    return translation.get(data.name_global, {'TEXT': data.name}).get('TEXT', data.name)
+
+
+def get_card_class(card):
+    card_class = "/".join([translate(card_class) for card_class in card.classes])
+    if card_class in ['INVALID', '']:
+        card_class = '无职业'
+
+    return card_class
 
 
 CardXML.loc_name = loc_name
@@ -165,16 +174,13 @@ class CardHandler():
 
     def stringify_card(self, card, index, is_bgs):
         collectible = "可收藏" if card.collectible else "不可收藏"
-        card_class = (translation["multiclass"][card.multi_class_group.name]
-                      if card.multi_class_group != MultiClassGroup.INVALID else
-                      translation["class"][card.card_class.name])
-        cost = ("%d星" % card.tags[GameTag.TECH_LEVEL] if is_bgs else "%d费" %
-                card.cost)
-        card_type = translation["type"][card.type.name]
+        card_class = get_card_class(card)
+        cost = "%d星" % card.tags[GameTag.TECH_LEVEL] if is_bgs else "%d费" % card.cost
+        card_type = translate(card.type)
         name = card.loc_name("zhCN")
         gold = "（金）" if is_bgs and 1429 not in card.tags else ""
         card_set = ("无" if type(card.card_set) is int else
-                    translation["set"][card.card_set.name])
+                    translate(card.card_set))
         return ("\\%d：%s%s，%s%s%s，%s，%s" %
                 (index, name, gold, cost, card_class, card_type, collectible,
                  card_set))
@@ -233,19 +239,16 @@ class CardHandler():
                 if args["is_bgs"] else "\n费用：%d费" % card.cost)
         stats = ("\n身材：%s/%s" %
                  (card.atk, health) if card.atk + health > 0 else "")
-        race = ("\n种族：%s" % translation["race"][card.race.name]
+        race = ("\n种族：%s" % translate(card.race)
                 if card.race != Race.INVALID else "")
-        rarity = ("\n稀有度：%s" % translation["rarity"][card.rarity.name]
+        rarity = ("\n稀有度：%s" % translate(card.rarity)
                   if card.rarity != Rarity.INVALID else "")
         text = "\n" + card.loc_text(lang) if len(card.description) else ""
         flavor = ("\n卡牌趣文：" +
                   card.loc_flavor(lang) if len(card.flavortext) else "")
-        card_class = ("\n职业：%s" %
-                      (translation["multiclass"][card.multi_class_group.name]
-                       if card.multi_class_group != MultiClassGroup.INVALID
-                       else translation["class"][card.card_class.name]))
+        card_class = ("\n职业：%s" % get_card_class(card))
         card_set = "\n扩展包：%s" % ("无" if type(card.card_set) is int else
-                                 translation["set"][card.card_set.name])
+                                 translate(card.card_set))
         collectible = "\n可否收藏：%s" % ("是" if card.collectible else "否")
         tags = (name + card_id + text + flavor + card_class + race + card_set +
                 cost + stats + rarity + collectible)
