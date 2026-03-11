@@ -396,13 +396,13 @@ hyperframe = ">=6.0,<7"
 
 [[package]]
 name = "hearthstone"
-version = "9.19.9"
+version = "9.20.0"
 description = "CardDefs.xml parser and Hearthstone enums for Python"
 optional = false
 python-versions = ">=3.6"
 files = [
-    {file = "hearthstone-9.19.9-py3-none-any.whl", hash = "sha256:f4328168d9740d9118e6af72875882fc74d59f5b7a38f2492115fe7efe977ac1"},
-    {file = "hearthstone-9.19.9.tar.gz", hash = "sha256:9e76ff19445760f4752ae2c070f3f629ee4872d44cf63d3dbff5a32b08435efe"},
+    {file = "hearthstone-9.20.0-py3-none-any.whl", hash = "sha256:04ed70269ff61e7475bee9aa29a63691a3431ea46d07e331eaecea018798b4cd"},
+    {file = "hearthstone-9.20.0.tar.gz", hash = "sha256:c6db2b5e65235c49cd24d211b1532fe3dd2a5b876938f5fab16cb0e97d301cf3"},
 ]
 
 [package.dependencies]
